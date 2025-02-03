@@ -1,4 +1,4 @@
-![tsw options page Plugin banner](images/banner-1544x500.png)
+![tsw options page Plugin banner](images/tsw-options-page-banner-1544x500.png)
 
 # TSW Options Page
 Easy and secure options page starter made for ClassicPress.
