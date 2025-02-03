@@ -28,4 +28,4 @@ Plugin built on WP_Options_Page
  * @see https://github.com/luizbills/wp-options-page
 
 # Support
-Use https://github.com/tradesouthwest/tsw-options-page to post your issues with this theme.
+Use https://github.com/tradesouthwest/tsw-options-page to post your issues with this plugin.
