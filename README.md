@@ -1,3 +1,5 @@
+![tsw options page Plugin banner](images/banner-1544x500.png)
+
 # TSW Options Page
 Easy and secure options page starter made for ClassicPress.
 
@@ -28,4 +30,4 @@ Plugin built on WP_Options_Page
  * @see https://github.com/luizbills/wp-options-page
 
 # Support
-Use https://github.com/tradesouthwest/tsw-options-page to post your issues with this plugin.
+Use https://github.com/tradesouthwest/tsw-options-page to post your issues with this theme.
