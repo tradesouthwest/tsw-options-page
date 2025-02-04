@@ -16,14 +16,15 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 
 	public function init () {
 		$this->id = 'wop_with_tabs';
-		$this->menu_title = 'With Tabs';
+		$this->menu_title = \esc_html__('Theme Control', 'tsw-options-page');
 		$this->menu_position = 9999;
 
 		// declare the "page_tabs" feature
 		$this->supports['page_tabs'] = [
 			// declare my tabs
-			'branding' => 'Branding',
-			'styles' => 'Styles'
+			'branding' => \esc_html__('Branding', 'tsw-options-page'),
+			'styles' => \esc_html__('Styles', 'tsw-options-page'),
+			'help' => \esc_html__('Help', 'tsw-options-page'),
 		];
         // see addons/rich_text_field.php
 		//$this->supports[] = 'rich_text_field';

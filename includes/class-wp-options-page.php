@@ -1,5 +1,6 @@
 <?php
-
+// exit if file is called directly
+if ( ! defined( 'ABSPATH' ) ) {	exit; }
 /**
  * WP_Options_Page class
  *
@@ -233,10 +234,10 @@ class WP_Options_Page {
 	 */
 	public function init () {
 		if ( ! \did_action( 'init' ) ) {
-			throw new \Exception( 'Please, don\'t use the ' . \get_class( $this ) . ' class before "init" hook.' );
+			throw new \Exception( \esc_attr__('Please, don\'t use the ', 'tsw-options-page') . \get_class( $this ) . \esc_attr__(' class before "init" hook.', 'tsw-options-page') );
 		}
 		if ( ! $this->id ) {
-			throw new \Exception( 'Missing $id in ' . \get_class( $this ) );
+			throw new \Exception( \esc_attr__('Missing $id in ', 'tsw-options-page') . \get_class( $this ) );
 		}
 
 		$this->menu_title = $this->menu_title ?? $this->id;
@@ -247,7 +248,7 @@ class WP_Options_Page {
 
 		$default_strings = [
 			'template_notice_error' => '<strong>Error</strong>: %s',
-			'checkbox_enable' => 'Enable',
+			'checkbox_enable' => \esc_attr__('Enable', 'tsw-options-page'),
 			'options_updated' => '<strong>' . \esc_html__( 'Settings saved.' ) . '</strong>',
 			'submit_button_label' => \esc_html__( 'Save Changes' ),
 		];
@@ -273,11 +274,12 @@ class WP_Options_Page {
 		
 		// enqueue admin page JS and CSS files
 		\add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-		wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+		
 		if ( 'false' !== wp_get_current_user()->syntax_highlighting ) {
 			wp_enqueue_script( 'wp-codemirror' );
+			wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 		}
-		wp_enqueue_script( 'custom-html-widgets' );
+		//wp_enqueue_script( 'custom-html-widgets' );
 		// maybe show "Settings saved" on submit
 		$this->add_action( 'after_update_options', [ $this, 'add_settings_saved_notice' ], 10, 2 );
 
