@@ -55,7 +55,7 @@ add_action( 'admin_enqueue_scripts', [ $this, 'enqueue' ] );
 		$page->do_action( 'after_field_input', $field, $this );
 
 		if ( $desc ) : ?>
-		<p class="description"><?php echo $desc ?></p>
+		<p class="description"><?php echo esc_html($desc) ?></p>
 		<?php endif;
     }
 
