@@ -17,7 +17,7 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 	public function init () {
 		$this->id = 'wop_with_tabs';
 		$this->menu_title = \esc_html__('Theme Control', 'tsw-options-page');
-		$this->menu_position = 9999;
+		$this->menu_position = 61;
 
 		// declare the "page_tabs" feature
 		$this->supports['page_tabs'] = [

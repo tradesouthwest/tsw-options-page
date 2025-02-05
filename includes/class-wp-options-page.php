@@ -275,8 +275,6 @@ class WP_Options_Page {
 		// enqueue admin page JS and CSS files
 		\add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		
-		
-		//wp_enqueue_script( 'custom-html-widgets' );
 		// maybe show "Settings saved" on submit
 		$this->add_action( 'after_update_options', [ $this, 'add_settings_saved_notice' ], 10, 2 );
 
@@ -515,17 +513,13 @@ class WP_Options_Page {
 			$this->add_notice( $notice, 'error' );
 		}
 	}
-
+	
 	/**
 	 * @since 0.1.0
 	 * @param string $hook_suffix
 	 * @return void
 	 */
 	public function enqueue_scripts ( $hook_suffix ) {
-		if ( 'false' !== wp_get_current_user()->syntax_highlighting ) {
-			wp_enqueue_script( 'wp-codemirror' );
-			wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
-		}
 		if ( $this->hook_suffix !== $hook_suffix ) return;
 		foreach ( $this->scripts as $params ) {
 			\call_user_func_array( 'wp_enqueue_script', $params );
