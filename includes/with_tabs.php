@@ -35,6 +35,7 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 	}
 
 	public function get_fields () {
+		$prvlnk = wp_kses_post('<a href="'. \site_url().'" target="_blank">'. esc_html__('Home (new tab)', 'tsw-options-page') .'</a>');
 		return [
 			[
 				'title' => 'Branding, Colors/Logo',
@@ -58,7 +59,7 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 				'id' => 'code_editor_page_css',
 				'title' => 'Additional CSS',
 				'type' => 'code_editor',
-				'description' => 'Use cursor to refresh frame below when ready to see changes.',
+				'description' => esc_html__('Mobile-ready view will change when you save settings ', 'tsw-options-page') . $prvlnk,
 				'tab' => 'styles',
                 
 			],
@@ -68,6 +69,12 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 				'type' => 'iframe',
 				'scr' => \site_url(),
 				'tab' => 'styles',
+			],
+			[
+				'title' => 'Support & Instructions',
+				'description' => 'General Help for this theme.',
+				'type' => 'title',
+				'tab' => 'help', // set the field tab
 			],
            
 		];
@@ -83,15 +90,17 @@ class WOP_Page_With_Tabs extends WP_Options_Page {
 	{ 
 		
 		$css_new = \get_option('wop_with_tabs_options')['code_editor_page_css'];
+		$css_clr = \get_option('wop_with_tabs_options')['color_1'];
 
-		$css_toget = ( empty( $css_new  ) ) ? 'body{color:inherit;}' : $css_new;
+		$css_toget = ( empty( $css_new  ) ) ? '' : $css_new;
+		$clr_toget = ( empty( $css_clr  ) ) ? '' : '.inner_content a{color:'. esc_attr($css_clr).';}';
 		// 1 = use these styles. 0 = do not use.
 		$opt_styles = '1';
 		$output     = '';
 		if( $opt_styles == 1 ) {
 			$output .= '<style type="text/css" id="thememod-styles">';
 		if( $opt_styles == "1" ) : 
-			$output .= wp_unslash( $css_toget );
+			$output .= wp_unslash( $css_toget . $clr_toget );
 		endif;
 			$output .= '</style> ';
 		} 
